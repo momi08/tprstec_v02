@@ -1,10 +1,10 @@
 #include <iostream>
 #include "app.h"
 
-using namespace vsite::oop::v2;
+
 
 int main() {
-    color c;
+    vsite::oop::v2::color c;
     double r, g, b;
     std::cout << "Unesite komponentu crvene (R) [0.0 - 1.0]: ";
     std::cin >> r;
@@ -18,5 +18,5 @@ int main() {
     std::cin >> b;
     c.set_blue(b);
 
-    std::cout << "Boja u heksadecimalnom formatu: " << c.to_hex() << std::endl;
+    std::cout << "Boja u heksadecimalnom formatu: " << vsite::oop::v2::to_hex(c.get_color_ref()) << std::endl;
 }

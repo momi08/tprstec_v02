@@ -9,10 +9,6 @@ namespace vsite::oop::v2
 	* class member function implementations
 	*/
 
-	double color::clamp(double value) {
-		return std::max(0.0, std::min(1.0, value));
-	}
-
 	double color::get_red() const {
 		return red;
 	}
@@ -26,33 +22,29 @@ namespace vsite::oop::v2
 	}
 
 	void color::set_red(double value) {
-		red = clamp(value);
+		red = std::clamp(value, 0.0, 1.0);
 	}
 
 	void color::set_green(double value) {
-		green = clamp(value);
+		green = std::clamp(value, 0.0, 1.0);
 	}
 
 	void color::set_blue(double value) {
-		blue = clamp(value);
+		blue = std::clamp(value, 0.0, 1.0);
 	}
 
 	unsigned int color::get_color_ref() const {
-		return RGB(static_cast<int>(red * 255),
-			(static_cast<int>(green * 255)),
-			(static_cast<int>(blue * 255)));
+		return RGB(red * 255, green * 255, blue * 255);
 	}
-
 
 	double color::get_luminance() const {
 		return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
 	}
 
-	std::string color::to_hex() const {
-		return std::format("#{0:02X}{1:02X}{2:02X}",
-			static_cast<int>(red * 255),
-			static_cast<int>(green * 255),
-			static_cast<int>(blue * 255)
-		);
+	std::string to_hex(unsigned int color) {
+		return std::format("#{:X}{:X}{:X}",
+			(color & 0xFF),
+			(color >> 8) & 0xFF,
+			(color >> 16) & 0xFF);
 	}
 } // namespace

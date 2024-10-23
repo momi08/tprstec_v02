@@ -15,8 +15,6 @@ namespace vsite::oop::v2
 		double green{ 0.0 };
 		double blue{ 0.0 };
 	
-		static double clamp(double value);
-	
 	public:
 		double get_red() const;
 		double get_green() const;
@@ -28,7 +26,9 @@ namespace vsite::oop::v2
 
 		unsigned int get_color_ref() const;
 		double get_luminance() const;
-
-		std::string to_hex() const;
 	};
+	
+	std::string to_hex(unsigned int color);
 }
+
+
